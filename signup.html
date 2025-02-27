@@ -824,24 +824,35 @@
                     validationMessage.textContent = message;
                 }
             }
-            
-            // Form submission with loading state
-            eventForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Validate all inputs
-                let isFormValid = true;
-                inputs.forEach(input => {
-                    if (!validateInput(input)) {
-                        isFormValid = false;
-                    }
-                });
-                
-                if (!isFormValid) {
-                    showNotification('error', 'Please fix the errors in the form');
-                    return;
-                }
-                
+            // Replace the existing form submission handler with:
+eventForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // ... existing validation code ...
+
+    try {
+        const response = await fetch('submit.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            showNotification('success', result.message);
+            eventForm.reset();
+            localStorage.removeItem('eventXpertFormData');
+        } else {
+            showNotification('error', result.message);
+        }
+    } catch (error) {
+        // ... error handling ...
+    }
+
+       
                 // Show loading state
                 submitBtn.classList.add('loading');
                 submitBtn.disabled = true;
