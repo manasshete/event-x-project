@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "manasm.a.s"; // Change if needed
-$dbname = "signup_manas";
+$dbname = "signup";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
