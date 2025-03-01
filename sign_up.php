@@ -988,6 +988,29 @@ eventForm.addEventListener('submit', async function(e) {
                 });
             });
         });
+    
+        
     </script>
+        <?php
+        // Database configuration
+        include 'signup.php';
+        if(isset($_POST['submit'])){
+            $college_name = $_POST['college_name'];
+            $contact = $_POST['contact'];
+            $email = $_POST['email'];
+            $address = $_POST['address'];
+            $event_name = $_POST['event_name'];
+            $eventid = $_POST['eventid'];
+            $venue = $_POST['venue'];
+            $description = $_POST['description'];
+            $datetime = $_POST['date-time'];
+            $sql = "INSERT INTO events (college_name, contact, email, address, event_name, eventid, venue, description, date-time) VALUES ('$college_name', '$contact', '$email', '$address', '$event_name', '$eventid', '$venue', '$description', ' $datetime')";
+            if ($conn->query($sql) === TRUE) {
+                echo '<script>console.log("New record created successfully")</script>';
+            } else {
+                echo '<script>console.log("Error: ' . $sql . '<br>' . $conn->error . '")</script>';
+            }
+        }
+        ?>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php
 // Database configuration
 $servername = "localhost";    // Usually 'localhost' for local development
-$username = "your_db_user";  // Database username (default: 'root' for XAMPP)
-$password = "your_db_pass";  // Database password (default: '' for XAMPP)
-$database = "event_xpert";   // Your database name
+$username = "root";  // Database username (default: 'root' for XAMPP)
+$password = "manasm.a.s";  // Database password (default: '' for XAMPP)
+$database = "signup_manas";   // Your database name
 
 // Create database connection
 $conn = new mysqli($servername, $username, $password, $database);
